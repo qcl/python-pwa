@@ -1,4 +1,4 @@
-const CACHE_NAME = 'static-cache-v1';
+const CACHE_NAME = 'static-cache-v2';
 
 const FILES_TO_CACHE = [
     './index.html',
@@ -6,7 +6,8 @@ const FILES_TO_CACHE = [
     './1.index.js',
     './ba809633fed94322bc52.module.wasm',
     './index.js',
-    './styles.css'
+    './styles.css',
+    './icon-152.png'
 ];
 
 self.addEventListener('install', (evt) => {
