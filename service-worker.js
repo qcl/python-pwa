@@ -24,10 +24,12 @@ self.addEventListener('activate', (evt) => {
     console.log('[Service Worker] Activate');
     evt.waitUntil(
         caches.keys().then((keyList) => {
-            if (key !== CACHE_NAME) {
-                console.log('[Service Worker] Removing old cache', key);
-                return caches.delete(key);
-            }
+            return Promise.all(keyList.map((key) => {
+                if (key !== CACHE_NAME) {
+                    console.log('[Service Worker] Removing old cache', key);
+                    return caches.delete(key);
+                }
+            }));
         })
     );
     self.clients.claim();
