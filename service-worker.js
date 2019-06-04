@@ -15,7 +15,7 @@ self.addEventListener('install', (evt) => {
         caches.open(CACHE_NAME).then((cache) => {
             console.log('[Service Worker] Pre-cache');
             return cache.addAll(FILES_TO_CACHE);
-        });
+        })
     );
     self.skipWaiting();
 });
@@ -28,7 +28,7 @@ self.addEventListener('activate', (evt) => {
                 console.log('[Service Worker] Removing old cache', key);
                 return caches.delete(key);
             }
-        });
+        })
     );
     self.clients.claim();
 });
@@ -41,7 +41,7 @@ self.addEventListener('fetch', (evt) => {
             return cache.match(evt.request).then((response) => {
                 return response || fetch(evt.request);
             });
-        });
+        })
     );
 });
 
